@@ -18,6 +18,11 @@ let threshold = 30
 let isOn = 0
 
 main:
+	if isOn = 1 then
+	{
+		goto main	
+	}
+	
 	readadc LDR,curLightValue ;
 	gosub print
 	if curLightValue < oldLightValue then ; its become darker
@@ -37,14 +42,14 @@ main:
 	
 cleanup:
 	oldLightValue = curLightValue
-	pause 1000
+	pause 20
 	goto main
 
 activate:
 	; turn on all the lights n buzzers
 	; and then cleanup
 	high LED_STRIP
-	sound buzzer (100,100)
+	sound buzzer, (100,1000)
 	isOn = 1
 	goto cleanup
 	
